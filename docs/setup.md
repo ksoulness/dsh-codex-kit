@@ -10,7 +10,7 @@
 | --- | --- |
 | `dsh plugin --profile <name> add <目录>` | 成功；pnpm 以 `link:` 安装，profile 的 `dsh.profile.bundles` 自动追加 `harness-relay-mcp` |
 | `dsh --profile <name> --dump-config` | 输出包含 `- id: harness-relay-mcp` 层，无 error |
-| `scripts/relay-proxy.mjs` 连真实 descriptor | `initialize` 返回 `dsh-relay-proxy`，`tools/list` 22 个原生工具 |
+| `scripts/relay-proxy.mjs` 连真实 descriptor | `initialize` 返回 `dsh-relay-proxy`，`tools/list` 25 个原生工具 |
 | `scripts/session-archive-mcp.mjs` | `archive_terminal_session`，参数仅 `sessionId` |
 | `codex mcp add ... -- node ...` | 写入 `[mcp_servers.*]`，`codex mcp list` 显示两个 server |
 | `codex plugin marketplace add` + `codex plugin add` | 两个 MCP 均按插件根解析相对路径并显示为 `enabled`；`remove` 可完全回退 |

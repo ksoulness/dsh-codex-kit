@@ -9,7 +9,7 @@
 制作机（Windows，Node `v24.19.0`、pnpm `10.34.3`、DSH `0.2.1-alpha.2`、Codex CLI `0.147.0`）：
 
 - 隔离 `DSH_HOME`：`dsh plugin --profile <name> add vendor/harness-relay` 以 `link:` 装入，自动登记 `dsh.profile.bundles`，`--dump-config` 出现 relay 层。
-- 真实 descriptor（只读）：`relay-proxy.mjs` 原生工具 22 个；`session-archive-mcp.mjs` 仅暴露 `archive_terminal_session`。
+- 真实 descriptor（只读）：`relay-proxy.mjs` 原生工具 25 个；`session-archive-mcp.mjs` 仅暴露 `archive_terminal_session`。
 - 隔离 `CODEX_HOME`：`codex mcp add` 生成的配置与本包生成器一致；`codex plugin marketplace add` + `codex plugin add` 可加载两个 MCP，`remove` 可完全回退。
 - 仓库侧：`npm test` 9/9、`npm run check`、`npm run verify:relay` 通过。
 
