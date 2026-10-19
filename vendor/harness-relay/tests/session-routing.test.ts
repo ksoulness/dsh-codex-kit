@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { SessionRoutingFacade, type SessionSummary } from '../src/session-routing/index.js'
+import { delegatedSessionTitle, SessionRoutingFacade, type SessionSummary } from '../src/session-routing/index.js'
 
 const workspace = {
   workspaceId: 'workspace-1',
@@ -58,6 +58,30 @@ test('latest-idle creates a fresh session when no reusable conversation exists',
   assert.deepEqual(result, { sessionId: 'created', reused: false, agentPreset: null })
 })
 
+test('fresh delegated sessions receive a prefixed title while reused sessions keep their title', async () => {
+  const renamed: Array<{ sessionId: string; title: string }> = []
+  const routing = new SessionRoutingFacade(client([
+    summary('latest', 100, { agentPreset: 'standard' }),
+  ], undefined, rename => { renamed.push(rename) }))
+
+  const title = delegatedSessionTitle('  review\n  this document  ')
+  const reused = await routing.resolve(workspace, {
+    sessionMode: 'latest-idle',
+    title,
+    archivedSessionIds: [],
+  })
+  const fresh = await routing.resolve(workspace, {
+    sessionMode: 'fresh',
+    title,
+    archivedSessionIds: [],
+  })
+
+  assert.equal(title, 'codex指派-review this document')
+  assert.equal(reused.reused, true)
+  assert.equal(fresh.reused, false)
+  assert.deepEqual(renamed, [{ sessionId: 'created', title }])
+})
+
 test('explicit reuse rejects archived, missing, and running sessions', async () => {
   const routing = new SessionRoutingFacade(client([
     summary('running', 90, { running: true }),
@@ -93,7 +117,11 @@ function summary(
   }
 }
 
-function client(items: SessionSummary[], created?: () => void) {
+function client(
+  items: SessionSummary[],
+  created?: () => void,
+  renamed?: (request: { sessionId: string; title: string }) => void,
+) {
   return {
     async listSessions(): Promise<SessionSummary[]> {
       return items
@@ -101,6 +129,9 @@ function client(items: SessionSummary[], created?: () => void) {
     async createSession(): Promise<{ sessionId: string }> {
       created?.()
       return { sessionId: 'created' }
+    },
+    async renameSession(request: { sessionId: string; title: string }): Promise<void> {
+      renamed?.(request)
     },
   }
 }

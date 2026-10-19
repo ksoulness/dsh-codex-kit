@@ -9,6 +9,8 @@ import type {
   QueueUpdateRequest,
   SessionCreateRequest,
   SessionCreateResult,
+  SessionRenameRequest,
+  SessionRenameResult,
   SessionSummary,
   SettingsDescription,
   WorkspaceCatalog,
@@ -42,6 +44,10 @@ export class HttpHarnessGateway implements HarnessGatewayProvider {
 
   createSession(request: SessionCreateRequest): Promise<SessionCreateResult> {
     return this.client.call('session.create', request)
+  }
+
+  renameSession(request: SessionRenameRequest): Promise<SessionRenameResult> {
+    return this.client.call('session.rename', request)
   }
 
   readHistory(request: HistoryRequest): Promise<HistoryPage> {

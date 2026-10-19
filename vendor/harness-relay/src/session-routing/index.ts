@@ -1,4 +1,4 @@
-export { SessionRoutingFacade } from './session-routing-facade.js'
+export { CODEX_DELEGATED_SESSION_TITLE_PREFIX, delegatedSessionTitle, SessionRoutingFacade } from './session-routing-facade.js'
 export type {
   SessionHostClient,
   SessionMode,

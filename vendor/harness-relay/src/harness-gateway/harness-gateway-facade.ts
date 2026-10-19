@@ -11,6 +11,8 @@ import type {
   QueueUpdateRequest,
   SessionCreateRequest,
   SessionCreateResult,
+  SessionRenameRequest,
+  SessionRenameResult,
   SessionSummary,
   SettingsDescription,
   WorkspaceCatalog,
@@ -25,6 +27,7 @@ export class HarnessGatewayFacade {
   createWorkspace(path: string): Promise<WorkspaceView> { return this.provider.createWorkspace(path) }
   listSessions(): Promise<SessionSummary[]> { return this.provider.listSessions() }
   createSession(request: SessionCreateRequest): Promise<SessionCreateResult> { return this.provider.createSession(request) }
+  renameSession(request: SessionRenameRequest): Promise<SessionRenameResult> { return this.provider.renameSession(request) }
   readHistory(request: HistoryRequest): Promise<HistoryPage> { return this.provider.readHistory(request) }
   describeSettings(): Promise<SettingsDescription> { return this.provider.describeSettings() }
   selectSessionModel(sessionId: string, selection: ModelSelection): Promise<ModelSelection> { return this.provider.selectSessionModel(sessionId, selection) }

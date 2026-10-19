@@ -26,6 +26,7 @@ test('the same idempotency key is isolated between stable client principals', as
         sessionCounter += 1
         value = { sessionId: `session-${sessionCounter}`, agentPreset: 'standard' }
         break
+      case 'session.rename': value = { title: 'codex指派-review', seq: 1 }; break
       case 'session.history':
         value = { events: [], hasMore: false, projections: { values: { permissions: { currentValue: 'read-only' } } } }
         break

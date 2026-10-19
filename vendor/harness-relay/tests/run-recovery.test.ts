@@ -22,6 +22,7 @@ test('persists the rpcId before submitting the prompt', async () => {
       case 'workspace.create': value = { workspace: { workspaceId: 'workspace-1', path: workspace, sessionIds: [] } }; break
       case 'workspace.list': value = { items: [{ workspaceId: 'workspace-1', path: workspace, sessionIds: [] }] }; break
       case 'session.create': value = { sessionId: 'session-1', agentPreset: 'standard' }; break
+      case 'session.rename': value = { title: 'codex指派-review', seq: 1 }; break
       case 'commands/execute': value = { commandId: 'command-1', result: { kind: 'success' } }; break
       case 'session.history':
         historyCalls += 1

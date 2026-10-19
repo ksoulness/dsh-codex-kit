@@ -65,6 +65,7 @@ test('reconciles an uncertain steer by its durable rpcId', async () => {
       case 'workspace.create': value = { workspace: { workspaceId: 'workspace-1', path: workspace, sessionIds: [] } }; break
       case 'workspace.list': value = { items: [{ workspaceId: 'workspace-1', path: workspace, sessionIds: [] }] }; break
       case 'session.create': value = { sessionId: 'session-1', agentPreset: 'standard' }; break
+      case 'session.rename': value = { title: 'codex指派-review', seq: 1 }; break
       case 'commands/execute': value = { result: { kind: 'success' } }; break
       case 'session.list': value = { items: [{ sessionId: 'session-1', running: true, projections: { asOfSeq: 3 } }] }; break
       case 'session.history': value = steerRpcId === ''
@@ -100,6 +101,7 @@ test('rolls back cancelRequested after a definitive cancellation rejection', asy
       case 'host.describe': value = {}; break
       case 'workspace.list': value = { items: [{ workspaceId: 'workspace-1', path: workspace, sessionIds: [] }] }; break
       case 'session.create': value = { sessionId: 'session-1', agentPreset: 'standard' }; break
+      case 'session.rename': value = { title: 'codex指派-review', seq: 1 }; break
       case 'session.list': value = { items: [{ sessionId: 'session-1', running: true, projections: { asOfSeq: 2 } }] }; break
       case 'session.history': value = permissionHistory('read-only'); break
       case 'session.prompt': value = { accepted: true, messageId: 'start-message' }; break
@@ -124,6 +126,7 @@ test('restores a fresh session after a temporary elevated permission', async () 
       case 'host.describe': value = {}; break
       case 'workspace.list': value = { items: [{ workspaceId: 'workspace-1', path: workspace, sessionIds: [] }] }; break
       case 'session.create': value = { sessionId: 'session-1', agentPreset: 'standard' }; break
+      case 'session.rename': value = { title: 'codex指派-review', seq: 1 }; break
       case 'session.list': value = { items: [{ sessionId: 'session-1', running: false, projections: { asOfSeq: 3 } }] }; break
       case 'commands/execute': {
         const line = (request.payload.args as { line: string }).line
@@ -159,6 +162,7 @@ test('marks a silent running session for attention and resumes after durable pro
       case 'host.describe': value = {}; break
       case 'workspace.list': value = { items: [{ workspaceId: 'workspace-1', path: workspace, sessionIds: [] }] }; break
       case 'session.create': value = { sessionId: 'session-1', agentPreset: 'standard' }; break
+      case 'session.rename': value = { title: 'codex指派-review', seq: 1 }; break
       case 'session.list': value = { items: [{ sessionId: 'session-1', running: true, projections: { asOfSeq: sequence } }] }; break
       case 'session.history': value = permissionHistory('read-only'); break
       case 'session.prompt': value = { accepted: true, messageId: 'start-message' }; break

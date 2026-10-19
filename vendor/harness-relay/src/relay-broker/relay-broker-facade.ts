@@ -7,7 +7,7 @@ import { ExternalPermissionProvider, PermissionGatewayFacade } from '../permissi
 import { PACKAGE_NAME } from '../product-identity/index.js'
 import { appendTaskScope, resolvePrompt } from '../prompt.js'
 import { mergeEvents, stringAt, userRpcId } from '../run-events.js'
-import { SessionRoutingFacade, type WorkspaceSessionSummary } from '../session-routing/index.js'
+import { delegatedSessionTitle, SessionRoutingFacade, type WorkspaceSessionSummary } from '../session-routing/index.js'
 import { RelayStateStore } from '../state-store.js'
 import type { ModelSelection, OperationRecord, PermissionLease, PersistedRelayState, PromptPart, RunSnapshot, ServiceSnapshot } from '../types.js'
 import { WorkspaceRoutingFacade, type WorkspaceResolution } from '../workspace-routing/index.js'
@@ -186,6 +186,7 @@ export class RelayFacade {
     await this.ready
     validateStartRunInput(input)
     const taskScope = resolveTaskScope(input)
+    const titleSource = resolvePrompt(input, this.config)
     const prompt = resolvePrompt(appendTaskScope(input, taskScope, input.authorizationBasis), this.config)
     const prepared = await this.journal.prepare(clientPrincipalId, input.operationKind ?? 'start', randomUUID(), operationRequest(input, prompt.summary, prompt.imageCount), input.idempotencyKey)
     const operation = prepared.record
@@ -244,6 +245,7 @@ export class RelayFacade {
       ...(input.sessionId === undefined ? {} : { sessionId: input.sessionId }),
       ...(input.sessionMode === undefined ? {} : { sessionMode: input.sessionMode }),
       ...(input.agentPreset === undefined ? {} : { agentPreset: input.agentPreset }),
+      title: delegatedSessionTitle(titleSource.summary),
       archivedSessionIds: catalog.archivedSessionIds,
     })
     const activeKey = this.activeKey(service.serviceId, session.sessionId)

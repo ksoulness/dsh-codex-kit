@@ -18,12 +18,14 @@ export interface SessionResolveRequest {
   sessionId?: string
   sessionMode?: SessionMode
   agentPreset?: string
+  title?: string
   archivedSessionIds: string[]
 }
 
 export interface SessionHostClient {
   listSessions(): Promise<SessionSummary[]>
   createSession(request: { workspaceId: string; agentPreset?: string }): Promise<{ sessionId: string; agentPreset?: string }>
+  renameSession(request: { sessionId: string; title: string }): Promise<unknown>
 }
 
 export type SessionWorkspace = Pick<WorkspaceView, 'workspaceId' | 'path' | 'sessionIds'>

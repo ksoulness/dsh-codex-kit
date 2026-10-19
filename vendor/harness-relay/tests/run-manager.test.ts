@@ -20,6 +20,7 @@ test('selects the model, enforces read-only, then submits the task', async () =>
       case 'workspace.create': value = { workspace: { workspaceId: 'workspace-1', path: request.payload.path, sessionIds: [] } }; break
       case 'workspace.list': value = { items: [{ workspaceId: 'workspace-1', path: fileURLToPath(new URL('../', import.meta.url)), sessionIds: [] }] }; break
       case 'session.create': value = { sessionId: 'session-1', agentPreset: 'standard' }; break
+      case 'session.rename': value = { title: 'codex指派-review', seq: 1 }; break
       case 'settings.describe': value = { writable: false, namespaces: [] }; break
       case 'session.selectModel': value = { selected: { provider: 'kimi-coding', model: 'k3', reasoningEffort: 'max' } }; break
       case 'session.list': value = { items: [{ sessionId: 'session-1', running: false, agentPreset: 'standard', projections: { asOfSeq: 6 } }] }; break
@@ -62,8 +63,11 @@ test('selects the model, enforces read-only, then submits the task', async () =>
     reasoningEffort: 'max',
   })
   const selectionIndex = calls.findIndex(call => call.method === 'session.selectModel')
+  const titleIndex = calls.findIndex(call => call.method === 'session.rename')
   const prompts = calls.filter(call => call.method === 'session.prompt')
   assert.ok(selectionIndex >= 0)
+  assert.deepEqual(calls[titleIndex]?.payload, { sessionId: 'session-1', title: 'codex指派-review' })
+  assert.ok(titleIndex >= 0 && titleIndex < selectionIndex)
   assert.equal(calls.filter(call => call.method === 'commands/execute').length, 0)
   assert.equal((prompts[0]?.payload.content as Array<{ text: string }>)[0]?.text, 'review')
   assert.ok(selectionIndex < calls.indexOf(prompts[0]!))

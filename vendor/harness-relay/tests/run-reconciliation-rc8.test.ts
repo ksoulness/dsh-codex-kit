@@ -153,6 +153,9 @@ function createFixture(history: () => RpcEvent[], running = () => true): Fixture
       case 'session.create':
         value = { sessionId: 'session-1', agentPreset: 'standard' }
         break
+      case 'session.rename':
+        value = { title: 'codex指派-review', seq: 1 }
+        break
       case 'session.list':
         value = { items: [{ sessionId: 'session-1', running: running(), projections: { asOfSeq: 6 } }] }
         break

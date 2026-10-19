@@ -24,6 +24,8 @@ export type {
   QueueUpdateRequest,
   SessionCreateRequest,
   SessionCreateResult,
+  SessionRenameRequest,
+  SessionRenameResult,
   SessionSummary,
   SettingsDescription,
   SettingsNamespace,

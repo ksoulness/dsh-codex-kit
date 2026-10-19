@@ -8,6 +8,13 @@ import type {
   WorkspaceSessionSummary,
 } from './types.js'
 
+export const CODEX_DELEGATED_SESSION_TITLE_PREFIX = 'codex指派-'
+
+export function delegatedSessionTitle(summary: string): string {
+  const detail = summary.replace(/\s+/gu, ' ').trim() || '任务'
+  return `${CODEX_DELEGATED_SESSION_TITLE_PREFIX}${Array.from(detail).slice(0, 112).join('')}`
+}
+
 export class SessionRoutingFacade {
   constructor(private readonly client: SessionHostClient) {}
 
@@ -49,6 +56,9 @@ export class SessionRoutingFacade {
       workspaceId: workspace.workspaceId,
       ...(request.agentPreset === undefined ? {} : { agentPreset: request.agentPreset }),
     })
+    if (request.title !== undefined) {
+      await this.client.renameSession({ sessionId: created.sessionId, title: request.title })
+    }
     return {
       sessionId: created.sessionId,
       reused: false,

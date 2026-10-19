@@ -14,6 +14,8 @@ import type {
   QueueUpdateRequest,
   SessionCreateRequest,
   SessionCreateResult,
+  SessionRenameRequest,
+  SessionRenameResult,
   SessionSummary,
   SettingsDescription,
   WorkspaceCatalog,
@@ -40,6 +42,7 @@ export interface InProcessApiClientPort {
   sessions: {
     list: UnaryMethod<Record<string, never>, { items: SessionSummary[] }>
     create: UnaryMethod<SessionCreateRequest, SessionCreateResult>
+    rename: UnaryMethod<SessionRenameRequest, SessionRenameResult>
     history: UnaryMethod<HistoryRequest, HistoryPage>
     selectModel: UnaryMethod<{ sessionId: string } & ModelSelection, { selected: ModelSelection }>
     prompt: UnaryMethod<{
@@ -124,6 +127,10 @@ export class InProcessHarnessGateway implements HarnessGatewayProvider {
 
   createSession(request: SessionCreateRequest): Promise<SessionCreateResult> {
     return this.invoke('session.create', () => this.client.sessions.create(request))
+  }
+
+  renameSession(request: SessionRenameRequest): Promise<SessionRenameResult> {
+    return this.invoke('session.rename', () => this.client.sessions.rename(request))
   }
 
   readHistory(request: HistoryRequest): Promise<HistoryPage> {

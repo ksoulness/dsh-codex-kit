@@ -10,6 +10,8 @@ import type {
   QueueUpdateRequest,
   SessionCreateRequest,
   SessionCreateResult,
+  SessionRenameRequest,
+  SessionRenameResult,
   SessionSummary,
   SettingsDescription,
   WorkspaceCatalog,
@@ -102,6 +104,10 @@ export class TypertHarnessGateway implements HarnessGatewayProvider {
 
   createSession(request: SessionCreateRequest): Promise<SessionCreateResult> {
     return this.invoke('session.create', 'session', 'create', { request })
+  }
+
+  renameSession(request: SessionRenameRequest): Promise<SessionRenameResult> {
+    return this.invoke('session.rename', 'session', 'rename', { request })
   }
 
   async readHistory(request: HistoryRequest): Promise<HistoryPage> {

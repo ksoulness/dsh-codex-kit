@@ -36,6 +36,16 @@ export interface SessionCreateResult {
   agentPreset?: string
 }
 
+export interface SessionRenameRequest {
+  sessionId: string
+  title: string
+}
+
+export interface SessionRenameResult {
+  title: string
+  seq: number
+}
+
 export interface HistoryRequest {
   sessionId: string
   maxMessages: number
@@ -139,6 +149,7 @@ export interface HarnessGatewayProvider {
   createWorkspace(path: string): Promise<WorkspaceView>
   listSessions(): Promise<SessionSummary[]>
   createSession(request: SessionCreateRequest): Promise<SessionCreateResult>
+  renameSession(request: SessionRenameRequest): Promise<SessionRenameResult>
   readHistory(request: HistoryRequest): Promise<HistoryPage>
   describeSettings(): Promise<SettingsDescription>
   selectSessionModel(sessionId: string, selection: ModelSelection): Promise<ModelSelection>
