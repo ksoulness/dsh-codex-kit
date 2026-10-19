@@ -136,6 +136,8 @@ codex plugin add dsh-codex-kit@dsh-codex-kit
 
 插件路线会一并带上两个技能，但**不注入 `DSH_HOME`**，需要你在客户端环境里设置，或改用 A/B。细节与三条路线的差异见 [安装与故障定位](docs/setup.md)。
 
+**换一台电脑？** 同一份仓库多机并用时，每台机器各自安装、各自生成配置，`descriptor`/凭据/`.local/` 一律不跨机复制：见 [在另一台电脑安装](docs/other-machines.md)。
+
 ## 工具清单
 
 Relay 暴露 **25** 个原生 MCP 工具（`scripts/relay-proxy.mjs` 转发到 DSH 内嵌 Relay），归档 MCP 只暴露 1 个：
@@ -206,6 +208,7 @@ tests/  docs/  licenses/           隔离测试、文档、第三方许可
 ## 文档
 
 - [安装与故障定位](docs/setup.md) —— 三条接入路线的实测命令、故障表
+- [在另一台电脑安装](docs/other-machines.md) —— 多机并用、不能复制的东西、跨平台差异
 - [上传到 GitHub](docs/publishing.md) —— 版本发布、Release 附件、回退
 - [可选 Codex 默认路由](docs/routing-policy.md)
 - [来源与本地改动](docs/provenance.md)

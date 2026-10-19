@@ -70,7 +70,7 @@ codex mcp add dsh-session-archive --env DSH_HOME=<本机DSH_HOME绝对路径> --
 codex mcp list
 ```
 
-实测写出的配置与本生成器一致：`command` 为 `node`，`args` 为脚本绝对路径，`env.DSH_HOME` 指向本机 DSH 根。`codex mcp add` 不写 `cwd`，两个脚本都不依赖当前目录。
+实测写出的配置与本生成器一致：`command` 为 `node`，`args` 为脚本绝对路径，`env.DSH_HOME` 指向本机 DSH 根。`codex mcp add` 不写 `cwd`，两个脚本都不依赖当前目录。目标 profile 不是 `web` 时再补 `--env DSH_PROFILE=<profile>`：脚本缺省按 `web` 找 `relay-endpoint.json`。
 
 ### C. 作为 Codex 插件安装（本仓库根即 marketplace）
 
