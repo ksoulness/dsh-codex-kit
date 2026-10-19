@@ -1,12 +1,13 @@
 # 上传到 GitHub
 
-本文件只描述把本仓库推送到 GitHub 的步骤与检查项。仓库的创建、可见性和账号动作由维护者本人执行；本包不会自行建库、push 或发布。
+本文件描述把本仓库推送到 GitHub 的步骤与检查项。仓库的创建、可见性变更和账号动作都需维护者授权后执行；本包自身不含任何建库、push 或发布代码。
 
 ## 0. 当前状态
 
-- 仓库内容已可在本地提交：`.gitignore` 排除 `node_modules/`、`.local/`、`*.log`、`__pycache__/`、系统垃圾文件；`.local/` 里是每台机器生成的绝对路径配置，**不要入库**。
+- 仓库已公开：<https://github.com/ksoulness/dsh-codex-kit>，默认分支 `main`，Release `v0.1.0` 已附带源码 ZIP 与 `.sha256`。下文步骤用于后续版本更新或在另一台机器重建发布。
+- 仓库内容已可提交：`.gitignore` 排除 `node_modules/`、`.local/`、`*.log`、`__pycache__/`、系统垃圾文件；`.local/` 里是每台机器生成的绝对路径配置，**不要入库**。
 - 源码包由 `scripts/package-release.py` 在**仓库目录之外**生成 `dsh-codex-kit-<version>.zip` 与同名 `.sha256`；该 ZIP 不属于仓库内容，作为 Release 附件上传。
-- 上传前需要维护者先决定：仓库拥有者、仓库名、可见性（public/private）、描述与 topics、以及认证方式（`gh`、HTTPS PAT 或 SSH）。
+- 下一次发布需要维护者先决定：版本号、变更说明，以及是否沿用同一仓库与认证方式。
 
 ## 1. 提交前检查
 

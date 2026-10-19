@@ -1,6 +1,6 @@
 # DSH 接手初版
 
-当前交付是本地初版：本地 Git 仓库已初始化并完成首次提交，**尚未创建远端、未上传 GitHub、未发布 Release、未安装到真实 Codex/DSH 环境**。Codex 不在本轮自动派发。
+当前交付已公开发布：<https://github.com/ksoulness/dsh-codex-kit>（`main`，MIT），Release `v0.1.0` 附带源码 ZIP 与 SHA-256。**尚未安装到真实 Codex/DSH 环境**，Codex 不在本轮自动派发。
 
 本文件下面的任务提示保留为接手入口；其中“运行 npm ci”“GitHub 仓库确认”等动作仍以接手时的实际授权为准。
 
@@ -13,7 +13,7 @@
 - 隔离 `CODEX_HOME`：`codex mcp add` 生成的配置与本包生成器一致；`codex plugin marketplace add` + `codex plugin add` 可加载两个 MCP，`remove` 可完全回退。
 - 仓库侧：`npm test` 9/9、`npm run check`、`npm run verify:relay` 通过。
 
-仍未做：真实 profile 安装与重启、Codex 实机加载、真实委派与归档、GitHub 建库与推送。
+仍未做：真实 profile 安装与重启、Codex 实机加载、真实委派与归档、后续版本发布。
 
 ## 可直接交给 DSH 的任务提示
 
@@ -57,6 +57,6 @@
 | 技能 | 通用化并做结构校验；插件路线会随包加载 | 实际任务行为与授权边界 |
 | 默认路由 | 提供 Codex 侧可选模板 | 用户决定是否合并及固定模型 |
 | 许可与发布材料 | 保留上游许可及来源说明；`docs/publishing.md` 给出上传步骤 | 用户确认 GitHub 仓库名称、拥有者、可见性与认证方式 |
-| 本地 Git 仓库 | 已初始化并首次提交 | 创建远端、push、发布 Release 附件 |
+| 本地 Git 仓库 | 已推送 `ksoulness/dsh-codex-kit`（public，`main`）并发布 `v0.1.0` | 后续版本变更、Release 附件与 tags 维护 |
 
 不要把“源码初版已完成”描述为“目标机器端到端验收已通过”。

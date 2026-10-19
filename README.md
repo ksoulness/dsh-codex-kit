@@ -91,7 +91,7 @@ npm run verify:relay
 
 ## 发布与接手
 
-整个目录可作为独立 GitHub 仓库内容。本地 Git 仓库已初始化并完成首次提交，**尚未创建远端、未上传、未发布 Release**。上传步骤、认证方式与推送后核对见 [上传到 GitHub](docs/publishing.md)；上传前执行 `git status --short --ignored`，确认 `.local/`、`node_modules/`、凭据与运行数据未入库。模式扫描通过不代表绝对不存在所有敏感信息。
+整个目录可作为独立 GitHub 仓库内容。仓库已公开：<https://github.com/ksoulness/dsh-codex-kit>，`main` 分支为首个提交，Release [v0.1.0](https://github.com/ksoulness/dsh-codex-kit/releases/tag/v0.1.0) 附带源码 ZIP 与 SHA-256 清单。后续更新、重新打包与推送核对见 [上传到 GitHub](docs/publishing.md)；上传前执行 `git status --short --ignored`，确认 `.local/`、`node_modules/`、凭据与运行数据未入库。模式扫描通过不代表绝对不存在所有敏感信息。
 
 用本机 Python 3 执行 `scripts/package-release.py` 可生成源码 ZIP、逐文件 SHA-256 清单及 ZIP 哈希文件；输出位于仓库目录外，脚本拒绝覆盖已有同版本 ZIP。打包只包含明确列出的源码与文档，排除依赖和本地数据。
 
