@@ -1,0 +1,130 @@
+{
+  "name": "harness-relay-mcp",
+  "version": "0.2.17-local.3",
+  "description": "Delegate and monitor DeepSeek Harness work from any MCP agent.",
+  "author": "TonyTangLab",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tonytanglab/deepseek-harness-relay-mcp.git"
+  },
+  "homepage": "https://github.com/tonytanglab/deepseek-harness-relay-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/tonytanglab/deepseek-harness-relay-mcp/issues"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "mcp",
+    "agent",
+    "delegation",
+    "monitoring"
+  ],
+  "type": "module",
+  "main": "./dist/dsh-relay-harness.mjs",
+  "exports": {
+    ".": {
+      "default": "./dist/dsh-relay-harness.mjs"
+    },
+    "./harness": {
+      "default": "./dist/dsh-relay-harness.mjs"
+    },
+    "./standalone": {
+      "default": "./dist/dsh-relay.mjs"
+    },
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "harness-relay-mcp": "./dist/dsh-relay.mjs",
+    "harness-relay-mcp-proxy": "./dist/dsh-relay-proxy.mjs",
+    "dsh-relay": "./dist/dsh-relay.mjs",
+    "dsh-relay-proxy": "./dist/dsh-relay-proxy.mjs"
+  },
+  "files": [
+    ".codex-plugin/plugin.json",
+    ".mcp.json",
+    "dist/dsh-relay.mjs",
+    "dist/dsh-relay-proxy.mjs",
+    "dist/dsh-relay-harness.mjs",
+    "cordis.patch.yml",
+    "README.md",
+    "README.zh-CN.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "version.json"
+  ],
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22.19"
+  },
+  "scripts": {
+    "build": "node ./scripts/sync-version.mjs && tsc --noEmit && node ./scripts/build.mjs",
+    "prepare:codex-local": "node ./scripts/sync-version.mjs && tsc --noEmit && node ./scripts/build.mjs && node ./scripts/verify-built-relay-version.mjs",
+    "check:built-version": "node ./scripts/verify-built-relay-version.mjs",
+    "check:version": "node ./scripts/sync-version.mjs --check",
+    "prepack": "node ./scripts/sync-version.mjs && tsc --noEmit && node ./scripts/build.mjs && node ./scripts/verify-built-relay-version.mjs && node ./scripts/validate-package-files.mjs",
+    "pretest": "node ./scripts/sync-version.mjs --check",
+    "test": "tsx --test ./tests/*.test.ts",
+    "test:mcp": "node ./scripts/sync-version.mjs && tsc --noEmit && node ./scripts/build.mjs && node ./scripts/verify-built-relay-version.mjs && node ./scripts/mcp-smoke.mjs",
+    "check:package": "node ./scripts/validate-package-files.mjs"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.2",
+    "@deepseek-ai/dsh-api-gateway": "0.2.0-rc.2 || 0.2.1-alpha.2",
+    "@deepseek-ai/dsh-api-session-controller": "0.2.0-rc.2 || 0.2.1-alpha.2",
+    "@deepseek-ai/dsh-api-settings-controller": "0.2.0-rc.2 || 0.2.1-alpha.2",
+    "@deepseek-ai/dsh-api-workspace-controller": "0.2.0-rc.2 || 0.2.1-alpha.2",
+    "@deepseek-ai/dsh-host-webserver": "0.2.0-rc.2 || 0.2.1-alpha.2",
+    "@deepseek-ai/dsh-permission-presets": "0.2.0-rc.2 || 0.2.1-alpha.2",
+    "@deepseek-ai/dsh-session": "0.2.0-rc.2 || 0.2.1-alpha.2",
+    "@deepseek-ai/schemastery": "^3.18.2",
+    "@deepseek-ai/dsh-agent-preset-registry": "0.2.0-rc.2 || 0.2.1-alpha.2"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/cordis": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-api-gateway": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-api-session-controller": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-api-settings-controller": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-api-workspace-controller": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-host-webserver": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-permission-presets": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-session": {
+      "optional": true
+    },
+    "@deepseek-ai/schemastery": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-agent-preset-registry": {
+      "optional": true
+    }
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "esbuild": "^0.25.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^4.4.3"
+  }
+}

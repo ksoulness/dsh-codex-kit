@@ -1,0 +1,14 @@
+{
+  "name": "dsh-codex-kit",
+  "version": "0.1.0",
+  "description": "Local DSH delegation and exact session archival",
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "DSH Codex Kit",
+    "shortDescription": "本机 DSH 委派与会话归档",
+    "longDescription": "本机 Relay 代理、只读与实施委派，以及精确终态会话归档。",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write"]
+  }
+}

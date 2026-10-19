@@ -1,0 +1,18 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "dsh-codex-kit",
+  "version": "0.1.0",
+  "description": "通过本机 MCP 委派 DSH 任务，监控结果并精确归档新会话。",
+  "license": "MIT",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "DSH Codex Kit",
+        "shortDescription": "本机 DSH 委派与会话归档",
+        "longDescription": "包含 Relay 源码、stdio MCP、只读与实施委派技能，以及精确会话归档。",
+        "category": "Productivity",
+        "capabilities": ["Read", "Write"]
+      }
+    }
+  }
+}

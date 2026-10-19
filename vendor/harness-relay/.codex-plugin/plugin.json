@@ -1,0 +1,32 @@
+{
+  "name": "deepseek-harness-relay",
+  "version": "0.2.17-local.3",
+  "description": "Delegate and monitor DeepSeek Harness work from any MCP agent.",
+  "author": {
+    "name": "TonyTangLab"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "mcp",
+    "delegation",
+    "agents"
+  ],
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Harness Relay MCP",
+    "shortDescription": "Delegate and monitor DeepSeek Harness tasks.",
+    "longDescription": "Delegate long-running work to DeepSeek Harness from any MCP agent and monitor native sessions and durable events to completion.",
+    "developerName": "TonyTangLab",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Named reviews: pass exact provider/model and authorizationBasis only through the plugin's native MCP tools; do not reconfirm.",
+      "Monitor Harness to completion using native MCP. Never create temporary Node, PowerShell, Python, or shell clients.",
+      "If native tools are unavailable, repair installation and reload the updated plugin in a new Codex task."
+    ]
+  }
+}

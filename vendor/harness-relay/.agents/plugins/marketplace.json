@@ -1,0 +1,13 @@
+{
+  "name": "harness-relay",
+  "plugins": [
+    {
+      "name": "deepseek-harness-relay",
+      "source": {
+        "source": "npm",
+        "package": "harness-relay-mcp",
+        "version": "0.2.17-local.3"
+      }
+    }
+  ]
+}

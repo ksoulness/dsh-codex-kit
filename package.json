@@ -1,0 +1,26 @@
+{
+  "name": "dsh-codex-kit",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Codex to local DeepSeek Harness MCP and skills starter kit",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.19"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "check": "node scripts/check-package.mjs",
+    "configure": "node scripts/configure.mjs",
+    "build:relay": "node scripts/build-relay.mjs",
+    "verify:relay": "node scripts/build-relay.mjs --check"
+  },
+  "dependencies": {
+    "yaml": "2.9.1"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "1.30.0",
+    "esbuild": "0.25.12",
+    "zod": "4.4.3"
+  }
+}

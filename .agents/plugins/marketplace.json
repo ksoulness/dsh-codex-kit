@@ -1,0 +1,20 @@
+{
+  "name": "dsh-codex-kit",
+  "interface": {
+    "displayName": "DSH Codex Kit"
+  },
+  "plugins": [
+    {
+      "name": "dsh-codex-kit",
+      "category": "Productivity",
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "source": {
+        "source": "local",
+        "path": "."
+      }
+    }
+  ]
+}

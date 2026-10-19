@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "harness-relay-mcp": {
+      "command": "node",
+      "args": ["./scripts/relay-proxy.mjs"],
+      "cwd": "."
+    },
+    "dsh-session-archive": {
+      "command": "node",
+      "args": ["./scripts/session-archive-mcp.mjs"],
+      "cwd": "."
+    }
+  }
+}
